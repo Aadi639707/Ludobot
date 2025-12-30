@@ -48,3 +48,6 @@ html, body { height: 100%; margin: 0; padding: 0; }
   background: #e5e7eb;
   border-radius: 4px;
 }
+.path{
+  background:#e5e7eb;
+}
