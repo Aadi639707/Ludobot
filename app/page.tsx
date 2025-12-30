@@ -26,7 +26,16 @@ export default function Home() {
 
     setPos(p => {
       const copy = [...p];
-      copy[turn] = Math.min(copy[turn] + d, path.length - 1);
+      const newPos = Math.min(copy[turn] + d, path.length - 1);
+
+      // Kill logic
+      for (let i = 0; i < 4; i++) {
+        if (i !== turn && copy[i] === newPos) {
+          copy[i] = 0; // opponent back to start
+        }
+      }
+
+      copy[turn] = newPos;
       return copy;
     });
 
@@ -41,11 +50,7 @@ export default function Home() {
 
       <div className="board">
         {path.map((p, i) => (
-          <div
-            key={i}
-            className="cell"
-            style={{ gridRow: p.r, gridColumn: p.c }}
-          >
+          <div key={i} className="cell" style={{ gridRow: p.r, gridColumn: p.c }}>
             {pos.map((pp, idx) =>
               pp === i ? (
                 <div
