@@ -1,27 +1,34 @@
 "use client";
 
-export default function Home() {
-  const size = 15;
-  const cells = [];
+import React, { useMemo } from "react";
 
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      cells.push(
-        <div key={${r}-${c}} className="cell"></div>
+const SIZE = 15;
+
+export default function Home() {
+  const cells = useMemo(() => {
+    return Array.from({ length: SIZE * SIZE }, (_, idx) => {
+      const r = Math.floor(idx / SIZE);
+      const c = idx % SIZE;
+
+      return (
+        <div key={${r}-${c}} className="cell">
+          {/* optional: show index */}
+          {/* {r},{c} */}
+        </div>
       );
-    }
-  }
+    });
+  }, []);
 
   return (
     <div className="screen">
       <div className="sidebar">
-        <h2 className="title">LudoBot</h2>
-        <button className="dice">Roll</button>
+        <h1 className="title">🎲 LudoBot</h1>
+        <button className="dice" type="button">
+          Roll
+        </button>
       </div>
 
-      <div className="board">
-        {cells}
-      </div>
+      <div className="board">{cells}</div>
     </div>
   );
           }
