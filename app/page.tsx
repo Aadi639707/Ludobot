@@ -1,12 +1,17 @@
 export default function Home() {
-  const cells = [];
+  const path = [];
 
-  for (let i = 7; i <= 9; i++) {
-    for (let j = 1; j <= 15; j++) {
-      cells.push({ row: j, col: i });
-      cells.push({ row: i, col: j });
-    }
-  }
+  // Vertical
+  for (let r = 1; r <= 15; r++) path.push({ r, c: 8 });
+  // Horizontal
+  for (let c = 1; c <= 15; c++) path.push({ r: 8, c });
+
+  const safe = [
+    { r: 2, c: 8 },
+    { r: 8, c: 2 },
+    { r: 14, c: 8 },
+    { r: 8, c: 14 },
+  ];
 
   return (
     <div className="screen">
@@ -19,21 +24,23 @@ export default function Home() {
         <div className="cell green" style={{ gridColumn: "10/16", gridRow: "10/16" }} />
 
         {/* Path */}
-        {cells.map((c, i) => (
-          <div
-            key={i}
-            className="cell"
-            style={{
-              gridColumn: c.col,
-              gridRow: c.row,
-              background: "#e5e7eb"
-            }}
-          />
-        ))}
+        {path.map((p, i) => {
+          const isSafe = safe.some(s => s.r === p.r && s.c === p.c);
+          return (
+            <div
+              key={i}
+              className="cell"
+              style={{
+                gridRow: p.r,
+                gridColumn: p.c,
+                background: isSafe ? "#facc15" : "#e5e7eb"
+              }}
+            />
+          );
+        })}
 
         {/* Center */}
         <div className="center" />
-
       </div>
     </div>
   );
