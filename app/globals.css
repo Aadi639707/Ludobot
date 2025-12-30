@@ -1,39 +1,20 @@
-body {
-  margin: 0;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.dice {
+  background:#00e676;
+  border:none;
+  padding:15px 25px;
+  font-size:18px;
+  border-radius:10px;
+  margin-bottom:10px;
+  cursor:pointer;
 }
 
-.screen {
-  background: #222;
-  padding: 10px;
+.token {
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  position:absolute;
 }
 
-.board {
-  display: grid;
-  grid-template-columns: 200px 150px 200px;
-  grid-template-rows: 200px 150px 200px;
-  border: 10px solid white;
-}
-
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.blue { background:#2196f3; }
-.red { background:#f44336; }
-.green { background:#4caf50; }
-.yellow { background:#fbc02d; }
-
-.path {
-  background: #ddd;
-}
-
-.center {
-  background: conic-gradient(red, yellow, green, blue);
+.redToken {
+  background:red;
 }
