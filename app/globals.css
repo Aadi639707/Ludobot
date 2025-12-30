@@ -2,27 +2,38 @@ body {
   margin: 0;
   background: #0f172a;
   color: white;
-  font-family: system-ui, sans-serif;
+  font-family: sans-serif;
 }
 
-.ludo-board {
+.screen {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.board {
+  width: 360px;
+  height: 360px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 6px;
-  margin-top: 30px;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .cell {
-  background: #1e293b;
-  aspect-ratio: 1 / 1;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  border: 1px solid #ccc;
 }
 
-.cell.active {
-  background: orange;
-  color: black;
+.blue { background: #3b82f6; }
+.red { background: #ef4444; }
+.green { background: #22c55e; }
+.yellow { background: #facc15; }
+
+.center {
+  grid-column: 7 / 10;
+  grid-row: 7 / 10;
+  background: conic-gradient(red, yellow, green, blue);
+  border-radius: 50%;
 }
