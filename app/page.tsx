@@ -1,20 +1,21 @@
-"use client";
+"use
+  'use client'
 
-import { useMemo } from "react";
+import { useMemo } from 'react'
 
-const SIZE = 15;
+const SIZE = 15
 
 export default function Home() {
   const cells = useMemo(() => {
     return Array.from({ length: SIZE * SIZE }, (_, idx) => {
-      const r = Math.floor(idx / SIZE);
-      const c = idx % SIZE;
+      const r = Math.floor(idx / SIZE)
+      const c = idx % SIZE
 
       return (
-        <div key={${r}-${c}} className="cell"></div>
-      );
-    });
-  }, []);
+        <div key={'${r}-${c}'} className="cell"></div>
+      )
+    })
+  }, [])
 
   return (
     <div className="screen">
@@ -27,5 +28,5 @@ export default function Home() {
         {cells}
       </div>
     </div>
-  );
+  )
           }
