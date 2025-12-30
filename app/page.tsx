@@ -1,22 +1,8 @@
-"use
-  'use client'
+"use client";
 
-import { useMemo } from 'react'
-
-const SIZE = 15
+const SIZE = 15;
 
 export default function Home() {
-  const cells = useMemo(() => {
-    return Array.from({ length: SIZE * SIZE }, (_, idx) => {
-      const r = Math.floor(idx / SIZE)
-      const c = idx % SIZE
-
-      return (
-        <div key={'${r}-${c}'} className="cell"></div>
-      )
-    })
-  }, [])
-
   return (
     <div className="screen">
       <div className="sidebar">
@@ -25,8 +11,10 @@ export default function Home() {
       </div>
 
       <div className="board">
-        {cells}
+        {Array.from({ length: SIZE * SIZE }).map((_, idx) => (
+          <div key={idx} className="cell" />
+        ))}
       </div>
     </div>
-  )
-          }
+  );
+}
