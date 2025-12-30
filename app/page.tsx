@@ -11,7 +11,8 @@ export default function Home() {
       const c = idx % SIZE;
 
       return (
-        <div key={${r}-${c}} className="cell">
+        <div key={${r}-${c}} 
+        className="cell">
           {/* optional: show index */}
           {/* {r},{c} */}
         </div>
