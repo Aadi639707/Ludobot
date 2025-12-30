@@ -1,20 +1,50 @@
-.dice {
-  background:#00e676;
-  border:none;
-  padding:15px 25px;
-  font-size:18px;
-  border-radius:10px;
-  margin-bottom:10px;
-  cursor:pointer;
+body {
+  margin: 0;
+  background: #0f172a;
+  font-family: Arial;
 }
 
-.token {
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  position:absolute;
+.screen {
+  display: flex;
+  height: 100vh;
+  color: white;
 }
 
-.redToken {
-  background:red;
+.sidebar {
+  width: 160px;
+  background: #020617;
+  padding: 15px;
+}
+
+.board {
+  width: 600px;
+  height: 600px;
+  background: white;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  border: 5px solid black;
+}
+
+.cell {
+  border: 1px solid #999;
+}
+
+.red { background: #dc2626; }
+.green { background: #16a34a; }
+.blue { background: #2563eb; }
+.yellow { background: #facc15; }
+.white { background: white; }
+
+.center {
+  grid-column: 7 / 10;
+  grid-row: 7 / 10;
+  background: linear-gradient(
+    45deg,
+    red,
+    yellow,
+    green,
+    blue
+  );
 }
