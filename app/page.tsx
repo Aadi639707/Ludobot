@@ -307,10 +307,14 @@ export default function Page() {
 
       const d = Math.floor(Math.random() * 6) + 1;
       const moves = computeLegalMoves(prev, prev.turn, d);
-      const msg = moves.length
+      const d = Math.floor(Math.random() * 6) + 1;
+const moves = computeLegalMoves(prev, prev.turn, d);
+
+const msg = moves.length
   ? Rolled ${d}. Choose a token to move.
   : Rolled ${d}. No moves. Tap Pass.;
-        
+
+return { ...prev, dice: d, message: msg, lastRollWasSix: d === 6 };
       return { ...prev, dice: d, message: msg, lastRollWasSix: d === 6 };
     });
   }
