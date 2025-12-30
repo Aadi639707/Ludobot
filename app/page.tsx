@@ -1,47 +1,48 @@
+"use client";
+import { useState } from "react";
+
+const path = [
+  { r: 8, c: 2 }, { r: 8, c: 3 }, { r: 8, c: 4 }, { r: 8, c: 5 }, { r: 8, c: 6 },
+  { r: 7, c: 6 }, { r: 6, c: 6 }, { r: 5, c: 6 }, { r: 4, c: 6 }, { r: 3, c: 6 },
+  { r: 2, c: 6 }, { r: 2, c: 7 }, { r: 2, c: 8 }, { r: 2, c: 9 }, { r: 2, c: 10 },
+  { r: 3, c: 10 }, { r: 4, c: 10 }, { r: 5, c: 10 }, { r: 6, c: 10 }, { r: 7, c: 10 },
+  { r: 8, c: 10 }, { r: 8, c: 11 }, { r: 8, c: 12 }, { r: 8, c: 13 }, { r: 8, c: 14 },
+  { r: 9, c: 14 }, { r: 10, c: 14 }, { r: 11, c: 14 }, { r: 12, c: 14 }, { r: 13, c: 14 },
+  { r: 14, c: 14 }, { r: 14, c: 13 }, { r: 14, c: 12 }, { r: 14, c: 11 }, { r: 14, c: 10 },
+  { r: 13, c: 10 }, { r: 12, c: 10 }, { r: 11, c: 10 }, { r: 10, c: 10 }, { r: 9, c: 10 },
+  { r: 8, c: 10 }, { r: 8, c: 9 }, { r: 8, c: 8 }
+];
+
 export default function Home() {
-  const path = [];
+  const [dice, setDice] = useState(1);
+  const [pos, setPos] = useState(0);
 
-  // Vertical
-  for (let r = 1; r <= 15; r++) path.push({ r, c: 8 });
-  // Horizontal
-  for (let c = 1; c <= 15; c++) path.push({ r: 8, c });
-
-  const safe = [
-    { r: 2, c: 8 },
-    { r: 8, c: 2 },
-    { r: 14, c: 8 },
-    { r: 8, c: 14 },
-  ];
+  function roll() {
+    const d = Math.floor(Math.random() * 6) + 1;
+    setDice(d);
+    setPos(p => Math.min(p + d, path.length - 1));
+  }
 
   return (
     <div className="screen">
-      <div className="board">
+      <div>
+        <h2>Dice: {dice}</h2>
+        <button onClick={roll}>🎲 Roll</button>
 
-        {/* Homes */}
-        <div className="cell blue" style={{ gridColumn: "1/7", gridRow: "1/7" }} />
-        <div className="cell yellow" style={{ gridColumn: "10/16", gridRow: "1/7" }} />
-        <div className="cell red" style={{ gridColumn: "1/7", gridRow: "10/16" }} />
-        <div className="cell green" style={{ gridColumn: "10/16", gridRow: "10/16" }} />
-
-        {/* Path */}
-        {path.map((p, i) => {
-          const isSafe = safe.some(s => s.r === p.r && s.c === p.c);
-          return (
+        <div className="board">
+          {path.map((p, i) => (
             <div
               key={i}
               className="cell"
               style={{
                 gridRow: p.r,
                 gridColumn: p.c,
-                background: isSafe ? "#facc15" : "#e5e7eb"
+                background: i === pos ? "red" : "#e5e7eb"
               }}
             />
-          );
-        })}
-
-        {/* Center */}
-        <div className="center" />
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+                     }
