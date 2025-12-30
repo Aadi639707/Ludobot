@@ -1,20 +1,22 @@
 "use client";
-import { useState } from "react";
 
 export default function Home() {
-  const [redPos, setRedPos] = useState(0);
+  const cells = [];
 
-  function rollDice() {
-    const dice = Math.floor(Math.random() * 6) + 1;
-    setRedPos(redPos + dice);
+  for (let i = 0; i < 225; i++) {
+    cells.push(<div key={i} className="cell white"></div>);
   }
 
   return (
     <div className="screen">
-      <button className="dice" onClick={rollDice}>🎲 Roll</button>
+      <div className="sidebar">
+        <h2>LudoBot</h2>
+        <p>Board loading…</p>
+      </div>
 
       <div className="board">
-        <div className="token redToken" style={{ left: redPos * 30 }}></div>
+        {cells}
+        <div className="center"></div>
       </div>
     </div>
   );
