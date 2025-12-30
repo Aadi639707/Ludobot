@@ -6,9 +6,7 @@ export default function Home() {
 
   for (let r = 0; r < size; r++) {
     for (let c = 0; c < size; c++) {
-      cells.push(
-        <div key={${r}-${c}} className="cell white"></div>
-      );
+      cells.push(<div key={${r}-${c}} className="cell" />);
     }
   }
 
@@ -16,12 +14,10 @@ export default function Home() {
     <div className="screen">
       <div className="sidebar">
         <h2>LudoBot</h2>
-        <p>Board setup</p>
+        <button className="dice">Roll</button>
       </div>
 
-      <div className="board">
-        {cells}
-      </div>
+      <div className="board">{cells}</div>
     </div>
   );
-          }
+}
