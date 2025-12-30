@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="screen">
       <div className="sidebar">
-        <h2>LudoBot</h2>
+        <h2 className="title">LudoBot</h2>
         <button className="dice">Roll</button>
       </div>
 
