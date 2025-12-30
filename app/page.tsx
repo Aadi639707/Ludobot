@@ -1,54 +1,79 @@
 "use client";
 
-import { useState } from "react";
-
 export default function Home() {
-  const [dice, setDice] = useState(1);
-  const [pos, setPos] = useState(0);
-
-  function rollDice() {
-    const d = Math.floor(Math.random() * 6) + 1;
-    setDice(d);
-    setPos(p => Math.min(p + d, 56));
-  }
-
   return (
-    <main style={{ minHeight: "100vh", background: "#0f172a", color: "white", padding: 20 }}>
-      <h1 style={{ fontSize: 32 }}>🎲 LudoBot</h1>
-
-      <p>Dice: {dice}</p>
-      <p>Token Position: {pos}</p>
-
-      <button
-        onClick={rollDice}
-        style={{
-          padding: 12,
-          background: "#22c55e",
-          color: "black",
-          borderRadius: 10,
-          fontSize: 18
-        }}
-      >
-        Roll Dice
-      </button>
-
-      <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(8, 40px)", gap: 4 }}>
-        {Array.from({ length: 56 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              width: 40,
-              height: 40,
-              background: i === pos ? "red" : "#1e293b",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 12
-            }}
-          >
-            {i}
+    <main className="screen">
+      <div className="board">
+        {/* Top row */}
+        <div className="home blue">
+          <div className="token-grid">
+            <span className="token blueTok" />
+            <span className="token blueTok" />
+            <span className="token blueTok" />
+            <span className="token blueTok" />
           </div>
-        ))}
+        </div>
+
+        <div className="center-path top">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <div key={i} className={cell ${i % 3 === 1 ? "yellowCell" : ""}} />
+          ))}
+        </div>
+
+        <div className="home yellow">
+          <div className="token-grid">
+            <span className="token yellowTok" />
+            <span className="token yellowTok" />
+            <span className="token yellowTok" />
+            <span className="token yellowTok" />
+          </div>
+        </div>
+
+        {/* Middle row */}
+        <div className="center-path left">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <div key={i} className={cell ${i % 3 === 1 ? "blueCell" : ""}} />
+          ))}
+        </div>
+
+        <div className="center">
+          <div className="tri blueTri" />
+          <div className="tri yellowTri" />
+          <div className="tri greenTri" />
+          <div className="tri redTri" />
+          <div className="midDot" />
+        </div>
+
+        <div className="center-path right">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <div key={i} className={cell ${i % 3 === 1 ? "greenCell" : ""}} />
+          ))}
+        </div>
+
+        {/* Bottom row */}
+        <div className="home red">
+          <div className="token-grid">
+            <span className="token redTok" />
+            <span className="token redTok" />
+            <span className="token redTok" />
+            <span className="token redTok" />
+          </div>
+        </div>
+
+        <div className="center-path bottom">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <div key={i} className={cell ${i % 3 === 1 ? "redCell" : ""}} />
+          ))}
+        </div>
+
+        <div className="home green">
+          <div className="token-grid">
+            <span className="token greenTok" />
+            <span className="token greenTok" />
+            <span className="token greenTok" />
+            <span className="token greenTok" />
+          </div>
+        </div>
       </div>
     </main>
   );
