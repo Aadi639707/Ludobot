@@ -1,50 +1,81 @@
-body {
+/* Reset */
+* {
   margin: 0;
-  background: #0f172a;
-  font-family: Arial;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.screen {
-  display: flex;
-  height: 100vh;
+body {
+  background: #0f172a;
+  font-family: Arial, sans-serif;
   color: white;
 }
 
-.sidebar {
-  width: 160px;
-  background: #020617;
-  padding: 15px;
+/* Layout */
+.screen {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background: #020617;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* Board */
 .board {
-  width: 600px;
-  height: 600px;
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 520px;
+  max-height: 520px;
   background: white;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(15, 1fr);
-  border: 5px solid black;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 6px solid #020617;
 }
 
+/* Cells */
 .cell {
-  border: 1px solid #999;
+  border: 1px solid #334155;
 }
 
-.red { background: #dc2626; }
-.green { background: #16a34a; }
-.blue { background: #2563eb; }
-.yellow { background: #facc15; }
-.white { background: white; }
+/* Colors */
+.blue {
+  background: #2563eb;
+}
+.red {
+  background: #dc2626;
+}
+.green {
+  background: #16a34a;
+}
+.yellow {
+  background: #facc15;
+}
+.white {
+  background: white;
+}
 
+/* Center */
 .center {
-  grid-column: 7 / 10;
-  grid-row: 7 / 10;
-  background: linear-gradient(
-    45deg,
-    red,
-    yellow,
-    green,
-    blue
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: conic-gradient(
+    red 0deg 90deg,
+    green 90deg 180deg,
+    yellow 180deg 270deg,
+    blue 270deg 360deg
   );
+  border-radius: 50%;
+  border: 6px solid white;
 }
