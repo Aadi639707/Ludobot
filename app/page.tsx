@@ -13,36 +13,55 @@ const path = [
   { r: 8, c: 10 }, { r: 8, c: 9 }, { r: 8, c: 8 }
 ];
 
+const colors = ["red", "blue", "yellow", "green"];
+
 export default function Home() {
   const [dice, setDice] = useState(1);
-  const [pos, setPos] = useState(0);
+  const [turn, setTurn] = useState(0);
+  const [pos, setPos] = useState([0, 0, 0, 0]);
 
   function roll() {
     const d = Math.floor(Math.random() * 6) + 1;
     setDice(d);
-    setPos(p => Math.min(p + d, path.length - 1));
+
+    setPos(p => {
+      const copy = [...p];
+      copy[turn] = Math.min(copy[turn] + d, path.length - 1);
+      return copy;
+    });
+
+    setTurn(t => (t + 1) % 4);
   }
 
   return (
     <div className="screen">
-      <div>
-        <h2>Dice: {dice}</h2>
-        <button onClick={roll}>🎲 Roll</button>
+      <h2>Turn: {colors[turn].toUpperCase()}</h2>
+      <h3>Dice: {dice}</h3>
+      <button onClick={roll}>🎲 Roll</button>
 
-        <div className="board">
-          {path.map((p, i) => (
-            <div
-              key={i}
-              className="cell"
-              style={{
-                gridRow: p.r,
-                gridColumn: p.c,
-                background: i === pos ? "red" : "#e5e7eb"
-              }}
-            />
-          ))}
-        </div>
+      <div className="board">
+        {path.map((p, i) => (
+          <div
+            key={i}
+            className="cell"
+            style={{ gridRow: p.r, gridColumn: p.c }}
+          >
+            {pos.map((pp, idx) =>
+              pp === i ? (
+                <div
+                  key={idx}
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    background: colors[idx]
+                  }}
+                />
+              ) : null
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
-                     }
+}
