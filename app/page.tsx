@@ -308,7 +308,6 @@ export default function Page() {
       const d = Math.floor(Math.random() * 6) + 1;
       const moves = computeLegalMoves(prev, prev.turn, d);
       const msg = moves.length
-        const msg = moves.length
   ? Rolled ${d}. Choose a token to move.
   : Rolled ${d}. No moves. Tap Pass.;
         
