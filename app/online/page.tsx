@@ -84,7 +84,7 @@ export default function Online() {
       .channel("players:" + room.id)
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "players", filter: `room_id=eq.${room.id}` },
+        { event: "*", schema: "public", table: "players", 'filter: room_id=eq.${room.id}` },
         () => loadPlayers(room.id)
       )
       .subscribe();
